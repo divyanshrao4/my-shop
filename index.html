@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SMART LOOK FASHIONS</title>
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:#f7f7f7;
+      color:#222;
+    }
+
+    /* NAVBAR */
+    nav{
+      position:fixed;
+      top:0;
+      width:100%;
+      background:#111;
+      color:#fff;
+      padding:15px 20px;
+      z-index:1000;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    nav h2{
+      font-size:22px;
+      letter-spacing:1px;
+    }
+
+    /* HERO */
+    .hero{
+      height:100vh;
+      background:
+      linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+      url('https://i.ibb.co/BVQ2ZMxK/happy-beautiful-couple-posing-with-shopping-bags-violet.jpg');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      color:#fff;
+      padding:20px;
+    }
+
+    .hero-content h1{
+      font-size:55px;
+      margin-bottom:15px;
+    }
+
+    .hero-content p{
+      font-size:22px;
+      margin-bottom:25px;
+    }
+
+    .btn{
+      background:#ff4d6d;
+      color:#fff;
+      padding:14px 28px;
+      border:none;
+      border-radius:30px;
+      font-size:16px;
+      cursor:pointer;
+      transition:.3s;
+      text-decoration:none;
+      display:inline-block;
+    }
+
+    .btn:hover{
+      background:#e63956;
+      transform:scale(1.05);
+    }
+
+    /* PRODUCTS */
+    .products-section{
+      padding:90px 20px;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:30px;
+      font-size:34px;
+    }
+
+    .carousel{
+      display:flex;
+      overflow-x:auto;
+      gap:20px;
+      scroll-snap-type:x mandatory;
+      padding-bottom:10px;
+    }
+
+    .carousel::-webkit-scrollbar{
+      height:8px;
+    }
+
+    .carousel::-webkit-scrollbar-thumb{
+      background:#ccc;
+      border-radius:10px;
+    }
+
+    .product-card{
+      min-width:280px;
+      background:#fff;
+      border-radius:18px;
+      padding:15px;
+      box-shadow:0 5px 15px rgba(0,0,0,.1);
+      scroll-snap-align:start;
+      transition:.3s;
+    }
+
+    .product-card:hover{
+      transform:translateY(-5px);
+    }
+
+    .product-card img{
+      width:100%;
+      height:300px;
+      object-fit:cover;
+      border-radius:12px;
+    }
+
+    .product-card h3{
+      margin:15px 0 8px;
+    }
+
+    .price{
+      color:#ff4d6d;
+      font-size:20px;
+      font-weight:bold;
+      margin-bottom:12px;
+    }
+
+    /* FLOATING CART */
+    .cart-icon{
+      position:fixed;
+      right:20px;
+      bottom:90px;
+      width:60px;
+      height:60px;
+      background:#111;
+      color:#fff;
+      border-radius:50%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-size:24px;
+      cursor:pointer;
+      z-index:1000;
+      box-shadow:0 5px 15px rgba(0,0,0,.3);
+    }
+
+    .cart-count{
+      position:absolute;
+      top:-5px;
+      right:-5px;
+      background:red;
+      color:#fff;
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      font-size:12px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    /* CART MODAL */
+    .cart-modal{
+      position:fixed;
+      top:0;
+      right:-100%;
+      width:100%;
+      max-width:400px;
+      height:100vh;
+      background:#fff;
+      z-index:2000;
+      transition:.4s;
+      padding:20px;
+      overflow-y:auto;
+      box-shadow:-5px 0 20px rgba(0,0,0,.2);
+    }
+
+    .cart-modal.active{
+      right:0;
+    }
+
+    .cart-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:20px;
+    }
+
+    .close-cart{
+      font-size:28px;
+      cursor:pointer;
+    }
+
+    .cart-item{
+      border-bottom:1px solid #ddd;
+      padding:12px 0;
+    }
+
+    .cart-form{
+      margin-top:20px;
+    }
+
+    .cart-form input{
+      width:100%;
+      padding:12px;
+      margin-bottom:12px;
+      border:1px solid #ccc;
+      border-radius:10px;
+    }
+
+    /* WHATSAPP */
+    .whatsapp-btn{
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      width:60px;
+      height:60px;
+      background:#25D366;
+      color:#fff;
+      border-radius:50%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-size:30px;
+      z-index:1000;
+      text-decoration:none;
+      box-shadow:0 5px 15px rgba(0,0,0,.3);
+    }
+
+    footer{
+      background:#111;
+      color:#fff;
+      text-align:center;
+      padding:20px;
+      margin-top:50px;
+    }
+
+    @media(max-width:768px){
+      .hero-content h1{
+        font-size:38px;
+      }
+
+      .hero-content p{
+        font-size:18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <h2>SMART LOOK FASHIONS</h2>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>SMART LOOK FASHIONS</h1>
+      <p>Fresh Finds, Best Prices</p>
+      <a href="#products" class="btn">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products-section" id="products">
+    <h2 class="section-title">Trending Products</h2>
+
+    <div class="carousel">
+
+      <div class="product-card">
+        <img src="https://i.ibb.co/xKrTXbNx/1778297440776.png" alt="Product">
+        <h3>Stylish Fashion Wear</h3>
+        <p class="price">₹999</p>
+        <button class="btn add-cart"
+          data-name="Stylish Fashion Wear"
+          data-price="999">
+          Add to Cart
+        </button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://i.ibb.co/xKrTXbNx/1778297440776.png" alt="Product">
+        <h3>Modern Outfit</h3>
+        <p class="price">₹1299</p>
+        <button class="btn add-cart"
+          data-name="Modern Outfit"
+          data-price="1299">
+          Add to Cart
+        </button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://i.ibb.co/xKrTXbNx/1778297440776.png" alt="Product">
+        <h3>Premium Collection</h3>
+        <p class="price">₹1499</p>
+        <button class="btn add-cart"
+          data-name="Premium Collection"
+          data-price="1499">
+          Add to Cart
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CART ICON -->
+  <div class="cart-icon" id="cartIcon">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <span class="cart-count" id="cartCount">0</span>
+  </div>
+
+  <!-- CART MODAL -->
+  <div class="cart-modal" id="cartModal">
+
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <span class="close-cart" id="closeCart">&times;</span>
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div class="cart-form">
+      <input type="text" id="customerName" placeholder="Your Name" required>
+      <input type="tel" id="customerPhone" placeholder="Phone Number" required>
+
+      <button class="btn" style="width:100%;" onclick="sendOrder()">
+        Send Order
+      </button>
+    </div>
+
+  </div>
+
+  <!-- WHATSAPP -->
+  <a href="https://wa.me/918429595418"
+     class="whatsapp-btn"
+     target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 SMART LOOK FASHIONS</p>
+    <p>Email: d25803690r@gmail.com</p>
+  </footer>
+
+  <!-- EMAILJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <script>
+
+    // =========================
+    // EMAILJS INIT
+    // =========================
+
+    emailjs.init("YOUR_PUBLIC_KEY");
+
+    // =========================
+    // CART
+    // =========================
+
+    let cart = [];
+
+    const cartCount = document.getElementById("cartCount");
+    const cartItems = document.getElementById("cartItems");
+
+    document.querySelectorAll(".add-cart").forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        const item = {
+          name: button.dataset.name,
+          price: button.dataset.price
+        };
+
+        cart.push(item);
+
+        updateCart();
+
+      });
+
+    });
+
+    function updateCart(){
+
+      cartCount.innerText = cart.length;
+
+      cartItems.innerHTML = "";
+
+      cart.forEach((item, index) => {
+
+        cartItems.innerHTML += `
+          <div class="cart-item">
+            <h4>${item.name}</h4>
+            <p>₹${item.price}</p>
+          </div>
+        `;
+
+      });
+
+    }
+
+    // =========================
+    // OPEN CLOSE CART
+    // =========================
+
+    const cartModal = document.getElementById("cartModal");
+
+    document.getElementById("cartIcon")
+      .addEventListener("click", () => {
+
+      cartModal.classList.add("active");
+
+    });
+
+    document.getElementById("closeCart")
+      .addEventListener("click", () => {
+
+      cartModal.classList.remove("active");
+
+    });
+
+    // =========================
+    // SEND ORDER EMAIL
+    // =========================
+
+    function sendOrder(){
+
+      if(cart.length === 0){
+        alert("Cart is empty!");
+        return;
+      }
+
+      const name =
+        document.getElementById("customerName").value;
+
+      const phone =
+        document.getElementById("customerPhone").value;
+
+      if(!name || !phone){
+        alert("Please enter name and phone number");
+        return;
+      }
+
+      let orderList = "";
+
+      cart.forEach((item, index) => {
+
+        orderList += `
+${index + 1}. ${item.name} - ₹${item.price}
+`;
+
+      });
+
+      const templateParams = {
+
+        customer_name: name,
+        customer_phone: phone,
+        order_details: orderList,
+        to_email: "d25803690r@gmail.com"
+
+      };
+
+      emailjs.send(
+        "YOUR_SERVICE_ID",
+        "YOUR_TEMPLATE_ID",
+        templateParams
+      )
+
+      .then(function(response){
+
+        alert("Order Sent Successfully!");
+
+        cart = [];
+
+        updateCart();
+
+        document.getElementById("customerName").value = "";
+        document.getElementById("customerPhone").value = "";
+
+      },
+
+      function(error){
+
+        alert("Failed to send order.");
+
+      });
+
+    }
+
+  </script>
+
+</body>
+</html>
